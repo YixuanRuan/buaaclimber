@@ -1,0 +1,178 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+
+<view class="weui-cells__title">出队信息登记</view>
+<form bindsubmit="formSubmit">
+  <view class="weui-cells weui-cells_after-title">
+<!--领队姓名-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">领队姓名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="leader" placeholder="请输入姓名" value="{{activityInfo.leader}}" />
+      </view>
+    </view>
+
+<!--领队电话-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">领队电话</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="phone" placeholder="请输入电话" value="{{activityInfo.phone}}" />
+      </view>
+    </view>
+
+<!--领队性别-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">领队性别</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="sex" placeholder="请输入性别" value="{{activityInfo.sex}}" />
+      </view>
+    </view>
+
+<!--领队入社时间-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">领队入社时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="joinTime" placeholder="请输入入社时间" value="{{activityInfo.joinTime}}" />
+      </view>
+    </view>
+
+
+<view class="weui-cells__title">出队信息</view>
+<!--出队地点-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">出队地点</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="location" placeholder="请输入出队地点" value="{{activityInfo.location}}" />
+      </view>
+    </view>
+
+<!--出队简介-->
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">出队简介</view>
+      </view>
+      <view class="weui-cell__bd">
+        <textarea class="weui-textarea" name="intro" value="{{activityInfo.intro}}"> </textarea>
+      </view>
+    </view>
+
+<!--出发时间-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">出发时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="beginTime" placeholder="例：8.23 周六 上午" value="{{activityInfo.beginTime}}" />
+      </view>
+    </view>
+
+<!--返回时间-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">返回时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="endTime" placeholder="例：8.24 周日 晚上" value="{{activityInfo.endTime}}" />
+      </view>
+    </view>
+
+<!--截止时间-->
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">截止时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" name="stopTime" value="{{activityInfo.stopTime}}" start="2019-01-01" end="2019-12-30" bindchange="bindDateChange">
+          <view class="weui-select weui-select_in-select-after">{{activityInfo.stopTime}}</view>
+        </picker>
+      </view>
+    </view>
+
+<!--出队人数-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">出队人数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="num" placeholder="请输入出队人数" value="{{activityInfo.num}}" />
+      </view>
+    </view>
+
+<!--当前人数-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">当前人数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="currentNum" placeholder="请输入当前人数" value="{{activityInfo.currentNum}}" />
+      </view>
+    </view>
+
+<!--出队预算-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">出队预算</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="budget" placeholder="请输入出队预算" value="{{activityInfo.budget}}" />
+      </view>
+    </view>
+
+<!--出队类型-->
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">出队类型</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker bindchange="bindTypeChange" name="type" value="{{typeIndex}}" range="{{types}}">
+          <view class="weui-select weui-select_in-select-after">{{types[typeIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+
+<view class="weui-cells__title">防鸽费(报名并转账给财务后预定成功)</view>
+<!--财务姓名-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">财务姓名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="moneyName" placeholder="请输入财务姓名" value="{{activityInfo.moneyName}}" />
+      </view>
+    </view>
+
+<!--财务支付宝-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">财务支付宝</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="moneyPhone" placeholder="请输入财务电话" value="{{activityInfo.moneyPhone}}" />
+      </view>
+    </view>
+
+<!--防鸽费-->
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">防鸽费</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="money" placeholder="20" value="{{activityInfo.money}}" />
+      </view>
+    </view>
+
+    <view class="btn-area">
+      <button class="weui-btn" type="primary" formType="submit">提交</button>
+    </view>
+  </view>
+
+</form>

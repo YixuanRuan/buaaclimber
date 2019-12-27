@@ -1,0 +1,40 @@
+<view class="page">
+
+  <view class="weui-cell">
+    <text class="head-text">最近活动</text>
+
+      <view class="img-box1"> 
+        <navigator url="/pages/discover/addActivity/addActivity">
+          <image class="plus" src="./plus.png" background-size="cover"></image>
+        </navigator>
+      </view>
+
+  </view>
+
+  <view class="weui-cells__title">已报名的活动</view>
+  <view class="page__bd page__bd_spacing">
+  <view class="kind-list">
+    <block wx:for="{{acJoinedDetail}}" wx:key="_id">
+      <view class="kind-list__item">
+        <view id="{{item._id}}" class="weui-flex kind-list__item-hd" bindtap="manageJoinedAc">
+          <view class="weui-flex__item">{{item.location}} 开始时间：{{item.beginTime}} 领队：{{item.leader}} </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  </view>
+
+  <view class="weui-cells__title">未报名的活动</view>
+  <view class="page__bd page__bd_spacing">
+  <view class="kind-list">
+    <block wx:for="{{acUnjoinedDetail}}" wx:key="_id">
+      <view class="kind-list__item">
+        <view id="{{item._id}}" class="weui-flex kind-list__item-hd" bindtap="joinAc">
+          <view class="weui-flex__item">{{item.location}} 开始时间：{{item.beginTime}} 领队：{{item.leader}} </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  </view>
+
+</view>

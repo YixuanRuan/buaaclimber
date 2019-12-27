@@ -1,0 +1,60 @@
+<!--pages/addOutdoorExperience/addOutdoorExperience.wxml-->
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="weui-cells__title">添加新信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">地点</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker bindchange="bindOutdoorExperienceChange" name="name" value="{{outdoorExperienceIndex}}" range="{{outdoorExperiences}}">
+          <view class="weui-select weui-select_in-select-after">{{outdoorExperiences[outdoorExperienceIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">职能</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker bindchange="bindOutdoorJobChange" name="job" value="{{outdoorJobIndex}}" range="{{outdoorJobs}}">
+          <view class="weui-select weui-select_in-select-after">{{outdoorJobs[outdoorJobIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">日期</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" name="date" value="{{date}}" start="2000-09-01" end="2050-09-01" bindchange="bindDateChange">
+          <view class="weui-input">{{date}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" formType="submit">提交</button>
+      <button formType="reset">重置</button>
+    </view>
+  </view>
+</form>
+
+<view class="weui-cells__title">已有信息</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="item-box">
+    <view class="items">
+      <view wx:for="{{userOutdoorExperiences}}" wx:key="{{index}}" class="item">
+
+        <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="{{item.txtStyle}}" data-index="{{index}}" class="inner txt">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">{{outdoorExperiences[item.name]}}</view>
+            <view class="weui-cell__ft">{{outdoorJobs[item.job]}} {{item.date}}</view>
+          </view>
+        </view>
+        <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+      </view>
+    </view>
+  </view>
+</view>
